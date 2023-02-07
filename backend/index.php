@@ -1,36 +1,34 @@
 <?php
-/*
-require_once "controllers/dummydatabase.controller.php";
+    
+    $data_array = [];
 
+    $data_to_frontend;
 
-$user_data = new UserController();
+    $api_key_check = $_POST["app_id"];
+    
+    //App specific key
+    const API_KEY = "d847b2e0-14f9-11e9-b5dc-0242ac130003";
 
-$user_data->get_users();
+    //check if the API key wasn't passed
+    if(empty($api_key_check) OR !isset($api_key_check))
+    {
+        $data_array = [
+            "data" => "No app key specified!",
+            "code" => "403"
+        ];
 
-if ($user_data == "0 results") {
-    die($user_data);
-} else {
-    if ($user_data->result->num_rows > 0) {
-        $data = [];
-        while ($rows = $user_data->result->fetch_assoc()) {
-            array_push(
-                $data,
-                [
-                    "id" => $rows["ID"],
-                    "username" => $rows["user_name"],
-                    "dateJoined" => $rows["date_joined"]
-                ]
-            );
-        }
-
-        $data_to_frontend = json_encode($data);
-        echo $data_to_frontend;
-     
+         die(json_encode($data_array));
+      
+        
     }
-}
-*/
+    
+    else if($api_key_check!= API_KEY)
+    {
+        $data_array = [
+            "data" => "Invalid app key!",
+            "code" => "403"
+        ];
 
-
-echo "Hello world";
-
-?>
+        die (json_encode($data_array));
+        
+    }
