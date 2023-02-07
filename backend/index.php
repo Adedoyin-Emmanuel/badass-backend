@@ -1,9 +1,6 @@
 <?php
     
     $data_array = [];
-
-    $data_to_frontend;
-
     $api_key_check = $_POST["app_id"];
     
     //App specific key
@@ -31,4 +28,13 @@
 
         die (json_encode($data_array));
         
+    }
+    else if($api_key_check == API_KEY)
+    {
+        $data_array = [
+            "data" => "Hello World",
+            "code" => "200"
+        ];
+
+        echo json_encode($data_array);
     }
