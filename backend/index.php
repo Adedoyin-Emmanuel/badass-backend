@@ -38,3 +38,12 @@
 
         echo json_encode($data_array);
     }
+
+    else{
+        $data_array = [
+            "data" => "An Error Has Occurred",
+            "code" => "500"
+        ];
+
+        die(json_encode($data_array));
+    }
