@@ -1,7 +1,7 @@
 <?php
     
     $data_array = [];
-    $api_key_check = $_POST["app_id"];
+    $api_key_check = $_REQUEST["app_id"];
     
     //App specific key
     const API_KEY = "d847b2e0-14f9-11e9-b5dc-0242ac130003";
@@ -19,7 +19,7 @@
         
     }
     
-    else if($api_key_check!= API_KEY)
+    else if($api_key_check  != API_KEY)
     {
         $data_array = [
             "data" => "Invalid app key!",
