@@ -1,9 +1,6 @@
 <?php
 
-
 require_once "./../controllers/convert.controller.php";
-
-use controller\convert_controller\Base_Converter;
 
 const CONVERTER_CONTROLLER = new Base_Converter();
 
@@ -17,9 +14,7 @@ if(!CONVERTER_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
-
-
-
+var_dump(CONVERTER_CONTROLLER->test_guzzle());
 
 
 ?>
