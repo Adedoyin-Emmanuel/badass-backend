@@ -32,14 +32,40 @@ require __DIR__ . '/vendor/autoload.php';
 		return $this->API_KEY;
 	}
 
-	public function test_guzzle(){
+	public function test_guzzle($image_path, $app_id){
+
+		if(empty($image_path) OR !isset($image_path))
+		{
+			return false;
+		}
+
+		$this->image_path = $image_path;
+		$this->app_id 	  = $app_id;
 
 		//init the guzzle client
 		$this->client = new GuzzleHttp\Client();
 		
-		//$this->response = $this->client->request('GET', 'http://example.com');
+		$this->response = $this->client->post('https://sdk.photoroom.com/v1/segment', [
+		    'multipart' => [
+		        [
+		            'name'     => 'image_file',
+		            'contents' => fopen($this->image_path, 'r')
+		        ],
+		        [
+		            'name'     => 'size',
+		            'contents' => 'auto'
+		        ]
+		    ],
+		    'headers' => [
+		        'X-Api-Key' =>	$this->app_id
+		    ]
+		]);
+
+		$this->fp = fopen("no-bg.png", "wb");
+		fwrite($this->fp, $this->response->getBody());
+		fclose($this->fp);
 		
-		return $this->client;
+		//return $this->client;
 		
 	}
 
