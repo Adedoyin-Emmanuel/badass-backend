@@ -14,6 +14,8 @@ if(!CONVERTER_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
+$dummy_image_path = __DIR__ . "";
+
 var_dump(CONVERTER_CONTROLLER->test_guzzle());
 
 
