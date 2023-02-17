@@ -30,6 +30,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'C' => 
+        array (
+            'Convertio\\' => 10,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -57,6 +61,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Convertio\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/convertio/convertio-php/src',
         ),
     );
 

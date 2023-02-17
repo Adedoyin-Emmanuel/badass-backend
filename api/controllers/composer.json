@@ -1,6 +1,7 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^7.5",
-        "mtownsend/remove-bg": "^2.0"
+        "mtownsend/remove-bg": "^2.0",
+        "convertio/convertio-php": "^0.4.0"
     }
 }
