@@ -60,7 +60,7 @@ require __DIR__ . '/vendor/autoload.php';
 		        ]
 		    ],
 		    'headers' => [
-		        'X-Api-Key' => $this->remove_bg_app_id
+		        'X-Api-Key' => $this->rem/ove_bg_app_id
 		    ]
 		]);
 
