@@ -16,6 +16,8 @@ final class File_Converter extends Base_Controller
 	
 	private $CONVERTIO_API_KEY;
 	private $API;
+	
+	
 
 
 	public function __construct()
@@ -35,5 +37,20 @@ final class File_Converter extends Base_Controller
 		$this->API = new Convertio(get_api_key());
 		$API = new Convertio("_YOUR_API_KEY_");  
   		$API->start('./input.docx', 'pdf')->wait()->download('./output.pdf')->delete();
+	}
+
+	public function get_uploaded_file_extension($file)
+	{
+		$this->filename = $_FILES[$file]["name"];
+		$this->file_extension = pathinfo($this->filename, PATHINFO_EXTENSION);
+
+		return $this->file_extension;
+	}
+
+	public function get_file_to_convert_to ($file)
+	{
+		$this->converting_to = $_POST[$file];
+
+		return $this->converting_to;
 	}
 }
