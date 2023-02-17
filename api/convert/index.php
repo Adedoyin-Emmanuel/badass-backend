@@ -3,8 +3,7 @@
 require_once "./../controllers/convert.controller.php";
 
 const CONVERT_FIILE_CONTROLLER = new File_Converter();
-
-$USER_APP_ID  = $_REQUEST["app_id"];
+$USER_APP_ID  = @$_REQUEST["app_id"];
 
 $SERVER_RESPONSE = CONVERT_FIILE_CONTROLLER->check_app_credentials($USER_APP_ID);
 
@@ -14,8 +13,8 @@ if(!CONVERT_FIILE_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
+echo (CONVERT_FIILE_CONTROLLER->check_file_request_sent("files"));
 
-echo "Hello world";
 
 
 ?>

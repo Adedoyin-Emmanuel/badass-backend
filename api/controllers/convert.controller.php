@@ -53,4 +53,25 @@ final class File_Converter extends Base_Controller
 
 		return $this->converting_to;
 	}
+
+	public function check_file_request_sent($request)
+	{
+			//we should be expecting only files.
+			$this->request_received = $_FILES[$request];
+			$this->filenames_array = array();
+
+			for($i = 0; $i < count($this->request_received["name"]); $i++)
+			{
+				$this->filename = $this->request_received["name"][$i];
+				$this->current_file_extension = get_uploaded_file_extension($this->filename);
+
+				array_push($this->filenames_array, [
+					"filename" => $this->filename,
+					"extension" =>$this->current_file_extension
+				]);
+			}
+
+			return json_encode($this->filenames_array);
+	}
+
 }
