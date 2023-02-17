@@ -41,10 +41,14 @@ final class File_Converter extends Base_Controller
 
 	public function get_uploaded_file_extension($file)
 	{
-		$this->filename = $_FILES[$file]["name"];
-		$this->file_extension = pathinfo($this->filename, PATHINFO_EXTENSION);
+		
+		return pathinfo($file, PATHINFO_EXTENSION);
+	}
 
-		return $this->file_extension;
+	public function custom_get_file_extension($file)
+	{
+		$this->file_extension = explode(".", $file);
+		return end($this->file_extension);
 	}
 
 	public function get_file_to_convert_to ($file)
@@ -63,15 +67,16 @@ final class File_Converter extends Base_Controller
 			for($i = 0; $i < count($this->request_received["name"]); $i++)
 			{
 				$this->filename = $this->request_received["name"][$i];
-				$this->current_file_extension = get_uploaded_file_extension($this->filename);
+				//$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
 				array_push($this->filenames_array, [
-					"filename" => $this->filename,
-					"extension" =>$this->current_file_extension
+					"filename" => $this->filename
+					//"extension" => $this->current_file_extension
 				]);
 			}
 
 			return json_encode($this->filenames_array);
+
 	}
 
 }
