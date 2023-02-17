@@ -14,9 +14,13 @@ if(!CONVERTER_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
-$dummy_image_path = __DIR__ . "/dummy_img/chain.png";
+$dummy_image_path = __DIR__ ."/chain.png";
 
 CONVERTER_CONTROLLER->test_guzzle($dummy_image_path);
+
+
+
+
 
 
 ?>

@@ -2,7 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-
 /**
  * Base class controller for the convert API
  * @see https://github.com/Adedoyin-Emmanuel/badass-backend/ 
@@ -17,6 +16,7 @@ require __DIR__ . '/vendor/autoload.php';
 	private $api_key_check;
 	public  $valid_key;
 	public  $client;
+	private $remove_bg_app_id;
 
 
 	public function __construct()
@@ -24,6 +24,8 @@ require __DIR__ . '/vendor/autoload.php';
 		$this->API_KEY = "d847b2e0-14f9-11e9-b5dc-0242ac130003";
 		$this->valid_key = false;
 		$this->data_array = [];
+		$this->remove_bg_app_id = 1245;
+
 
 	}
 
@@ -32,7 +34,7 @@ require __DIR__ . '/vendor/autoload.php';
 		return $this->API_KEY;
 	}
 
-	public function test_guzzle($image_path, $app_id){
+	public function test_guzzle($image_path){
 
 		if(empty($image_path) OR !isset($image_path))
 		{
@@ -40,12 +42,13 @@ require __DIR__ . '/vendor/autoload.php';
 		}
 
 		$this->image_path = $image_path;
-		$this->app_id 	  = $app_id;
+		$this->remove_bg_app_id = "ndjs8DYnpUJxe79aR3vtoHrF";
 
-		//init the guzzle client
+		$this->absolute_url ="/download";
+
+
 		$this->client = new GuzzleHttp\Client();
-		
-		$this->response = $this->client->post('https://sdk.photoroom.com/v1/segment', [
+		$this->response = $this->client->post('https://api.remove.bg/v1.0/removebg', [
 		    'multipart' => [
 		        [
 		            'name'     => 'image_file',
@@ -57,15 +60,13 @@ require __DIR__ . '/vendor/autoload.php';
 		        ]
 		    ],
 		    'headers' => [
-		        'X-Api-Key' =>	$this->app_id
+		        'X-Api-Key' => $this->remove_bg_app_id
 		    ]
 		]);
 
 		$this->fp = fopen("no-bg.png", "wb");
 		fwrite($this->fp, $this->response->getBody());
 		fclose($this->fp);
-		
-		//return $this->client;
 		
 	}
 

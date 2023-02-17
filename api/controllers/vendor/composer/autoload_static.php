@@ -11,6 +11,7 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'd227d0f78930da13f4232c4fae5ebd76' => __DIR__ . '/..' . '/mtownsend/remove-bg/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -18,6 +19,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+        ),
+        'M' => 
+        array (
+            'Mtownsend\\RemoveBg\\' => 19,
         ),
         'G' => 
         array (
@@ -36,6 +41,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Mtownsend\\RemoveBg\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtownsend/remove-bg/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
