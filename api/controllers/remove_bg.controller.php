@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
+require_once "base.controller.php";
 
 /**
  * Base class controller for the convert API
@@ -9,24 +10,17 @@ require __DIR__ . '/vendor/autoload.php';
 
 
 
- class Remove_Bg
+final class Remove_Bg extends Base_Controller
 {
-	private $API_KEY;
-	private $data_array;
-	private $api_key_check;
-	public  $valid_key;
+	
 	public  $client;
 	private $remove_bg_app_id;
 
 
 	public function __construct()
 	{
-		$this->API_KEY = "d847b2e0-14f9-11e9-b5dc-0242ac130003";
-		$this->valid_key = false;
-		$this->data_array = [];
+		parent::__construct();
 		$this->remove_bg_app_id = 1245;
-
-
 	}
 
 	public function get_api_key () 
@@ -34,7 +28,14 @@ require __DIR__ . '/vendor/autoload.php';
 		return $this->API_KEY;
 	}
 
-	public function test_guzzle($image_path){
+	public function remove_image_bg($image_path){
+		
+		/**
+		 * If you are seeing this source code. GREAT you can definately use it, but as at the time of building this project, I used a TypeScript Frontend approach to build the image removal module in Badass, WHY?? well that's becuase the API i planned to use didn't have a good Documentation as at the time of building this, also their plans weren't friendly, so I had to look for another alternative which was probably better.
+		 * @see https://github.com/Adedoyin-Emmanuel/Badass/ for more info
+		 * 
+		 * 
+		 * */
 
 		if(empty($image_path) OR !isset($image_path))
 		{

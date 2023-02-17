@@ -7,11 +7,11 @@
 
 
 
- class Remove_Bg
+ class Base_Controller
 {
-	private $API_KEY;
-	private $data_array;
-	private $api_key_check;
+	protected $API_KEY;
+	protected $data_array;
+	protected $api_key_check;
 	public  $valid_key;
 
 
@@ -20,9 +20,6 @@
 		$this->API_KEY = "d847b2e0-14f9-11e9-b5dc-0242ac130003";
 		$this->valid_key = false;
 		$this->data_array = [];
-		$this->remove_bg_app_id = 1245;
-
-
 	}
 
 
