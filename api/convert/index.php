@@ -13,7 +13,7 @@ if(!CONVERT_FIILE_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
-echo (CONVERT_FIILE_CONTROLLER->check_file_request_sent("files"));
+echo (CONVERT_FILE_CONTROLLER->check_file_request_sent("files"));
 
 
 

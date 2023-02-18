@@ -67,11 +67,11 @@ final class File_Converter extends Base_Controller
 			for($i = 0; $i < count($this->request_received["name"]); $i++)
 			{
 				$this->filename = $this->request_received["name"][$i];
-				//$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
+				$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
 				array_push($this->filenames_array, [
 					"filename" => $this->filename
-					//"extension" => $this->current_file_extension
+					"extension" => $this->current_file_extension
 				]);
 			}
 
