@@ -16,9 +16,6 @@ final class File_Converter extends Base_Controller
 	
 	private $CONVERTIO_API_KEY;
 	private $API;
-	
-	
-
 
 	public function __construct()
 	{
