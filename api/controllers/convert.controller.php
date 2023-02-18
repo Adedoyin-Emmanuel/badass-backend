@@ -41,14 +41,12 @@ final class File_Converter extends Base_Controller
 
 	public function get_uploaded_file_extension($file)
 	{
-		
 		return pathinfo($file, PATHINFO_EXTENSION);
 	}
 
 	public function custom_get_file_extension($file)
 	{
-		$this->file_extension = explode(".", $file);
-		return end($this->file_extension);
+		return end(explode(".",$file));
 	}
 
 	public function get_file_to_convert_to ($file)
@@ -70,7 +68,7 @@ final class File_Converter extends Base_Controller
 				$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
 				array_push($this->filenames_array, [
-					"filename" => $this->filename
+					"filename" => $this->filename,
 					"extension" => $this->current_file_extension
 				]);
 			}
