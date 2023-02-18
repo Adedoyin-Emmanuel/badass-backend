@@ -56,24 +56,34 @@ final class File_Converter extends Base_Controller
 		return $this->converting_to;
 	}
 
+	public function convert_bytes_to_kb($bytes)
+	{	
+		//returns the btyes to KB in 2 decimal places
+		return  (number_format($bytes / 1024, 2, ".", ""));
+	}
+
 	public function check_file_request_sent($request)
 	{
-			//we should be expecting only files.
-			$this->request_received = $_FILES[$request];
-			$this->filenames_array = array();
+		//we should be expecting only files.
+		$this->request_received = $_FILES[$request];
+		$this->filenames_array = array();
 
-			for($i = 0; $i < count($this->request_received["name"]); $i++)
-			{
-				$this->filename = $this->request_received["name"][$i];
-				$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
+		for($i = 0; $i < count($this->request_received["name"]); $i++)
+		{
+			$this->filename = $this->request_received["name"][$i];
 
-				array_push($this->filenames_array, [
-					"filename" => $this->filename,
-					"extension" => $this->current_file_extension
-				]);
-			}
+			//we want the filesize in KB
+			$this->filesize = $this->convert_bytes_to_kb($this->request_received["size"][$i]);
+			$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
-			return json_encode($this->filenames_array);
+			array_push($this->filenames_array, [
+				"filename"  => $this->filename,
+				"extension" => $this->current_file_extension,
+				"filesize"  => $this->filesize 
+			]);
+		}
+
+		return json_encode($this->filenames_array);
 
 	}
 
