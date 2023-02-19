@@ -77,6 +77,7 @@ final class File_Converter extends Base_Controller
 			$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
 			array_push($this->filenames_array, [
+				"id" 		=> $i,
 				"filename"  => $this->filename,
 				"extension" => $this->current_file_extension,
 				"filesize"  => $this->filesize 
