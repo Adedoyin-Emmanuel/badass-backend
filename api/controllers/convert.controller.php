@@ -62,7 +62,7 @@ final class File_Converter extends Base_Controller
 		//return  (number_format($bytes / 1024, 2, ".", ""));
 
 		//return a round up number
-		return (floor($btyes / 1024));
+		return (ceil($bytes / 1024));
 	}
 
 	public function remove_file_extension($file)
