@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "./../controllers/convert.controller.php";
 
 const CONVERT_FILE_CONTROLLER = new File_Converter();
@@ -15,10 +15,16 @@ if(!CONVERT_FILE_CONTROLLER->valid_key)
 }
 
 if(isset($_FILES["files"]))
-{
+{	
 	echo (CONVERT_FILE_CONTROLLER->check_file_request_sent("files"));
-
 }
 
+if(isset($_REQUEST["convert_to"]))
+{
+	var_dump (CONVERT_FILE_CONTROLLER->check());
+	//var_dump ($_SESSION["uploaded_file"]);
+
+	
+}
 
 ?>
