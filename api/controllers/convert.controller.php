@@ -62,6 +62,12 @@ final class File_Converter extends Base_Controller
 		return  (number_format($bytes / 1024, 2, ".", ""));
 	}
 
+	public function remove_file_extension($file)
+	{
+		//returns the filename, excluding the extension
+		return reset(explode(".", $file));
+	}
+
 	public function check_file_request_sent($request)
 	{
 		//we should be expecting only files.
@@ -78,7 +84,7 @@ final class File_Converter extends Base_Controller
 
 			array_push($this->filenames_array, [
 				"id" 		=> $i,
-				"filename"  => $this->filename,
+				"filename"  => $this->remove_file_extension($this->filename),
 				"extension" => $this->current_file_extension,
 				"filesize"  => $this->filesize 
 			]);
