@@ -59,7 +59,10 @@ final class File_Converter extends Base_Controller
 	public function convert_bytes_to_kb($bytes)
 	{	
 		//returns the btyes to KB in 2 decimal places
-		return  (number_format($bytes / 1024, 2, ".", ""));
+		//return  (number_format($bytes / 1024, 2, ".", ""));
+
+		//return a round up number
+		return (floor($btyes / 1024));
 	}
 
 	public function remove_file_extension($file)
