@@ -14,13 +14,14 @@ if(!CONVERT_FILE_CONTROLLER->valid_key)
 	echo $SERVER_RESPONSE;
 }
 
-if(isset($_FILES["files"]))
-{	
-	echo (CONVERT_FILE_CONTROLLER->check_file_request_sent("files"));
-}
+// if(isset($_FILES["files"]))
+// {	
+// }
 
-if(isset($_REQUEST["convert_to"]))
+if(isset($_REQUEST["convert_to"]) AND isset($_FILES["files"]))
 {
+	echo (CONVERT_FILE_CONTROLLER->check_file_request_sent("files"));
+	
 	var_dump (CONVERT_FILE_CONTROLLER->check());
 	//var_dump ($_SESSION["uploaded_file"]);
 
