@@ -31,12 +31,12 @@ final class File_Converter extends Base_Controller
 
 	public function convert_file($default_file, $file_to_convert_to)
 	{
-		// $this->default_file = $default_file;
-		// $this->file_to_convert_to = get_file_to_convert_to($file_to_convert_to);
-		// $this->file_to_convert_to_extension = get_uploaded_file_extension($default_file);
+		$this->default_file = $default_file;
+		$this->file_to_convert_to = get_file_to_convert_to($file_to_convert_to);
+		$this->file_to_convert_to_extension = get_uploaded_file_extension($default_file);
 
-		// $this->API = new Convertio(get_api_key());
-  		// $this->API->start($this->default_file, $this->file_to_convert_to)->wait()->download('./output'.$this->file_to_convert_to_extension)->delete();
+		$this->API = new Convertio(get_api_key());
+  		$this->API->start($this->default_file, $this->file_to_convert_to)->wait()->download('./output'.$this->file_to_convert_to_extension)->delete();
 	}
 
 	public function get_uploaded_file_extension($file)
@@ -47,13 +47,6 @@ final class File_Converter extends Base_Controller
 	public function custom_get_file_extension($file)
 	{
 		return end(explode(".",$file));
-	}
-
-	public function get_file_to_convert_to ($file)
-	{
-		$this->converting_to = $_POST[$file];
-
-		return $this->converting_to;
 	}
 
 	public function convert_bytes_to_kb($bytes)
@@ -71,20 +64,18 @@ final class File_Converter extends Base_Controller
 		return reset(explode(".", $file));
 	}
 	
-	public function check_file_request_sent($request)
+	public function check_file_request_sent($request, $converting_to)
 	{
 		$_SESSION["uploaded_files"] = $_FILES[$request];
 		//we should be expecting only files.
 		$this->request_received = $_SESSION["uploaded_files"];
+		$this->converting_to = $converting_to;
 		$this->filenames_array = array();
 		//$_SESSION["files"] = $this->request_received;
 
 		for($i = 0; $i < count($this->request_received["name"]); $i++)
 		{
 			$this->filename = $this->request_received["name"][$i];
-
-			//$_SESSION["total_files"] = $i;
-
 			//we want the filesize in KB
 			$this->filesize = $this->convert_bytes_to_kb($this->request_received["size"][$i]);
 			$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
@@ -93,7 +84,8 @@ final class File_Converter extends Base_Controller
 				"id" 		=> $i,
 				"filename"  => $this->remove_file_extension($this->filename),
 				"extension" => $this->current_file_extension,
-				"filesize"  => $this->filesize 
+				"filesize"  => $this->filesize,
+				"converting_to" => $this->converting_to
 			]);
 		}
 
