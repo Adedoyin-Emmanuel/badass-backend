@@ -87,6 +87,9 @@ final class File_Converter extends Base_Controller
 				"filesize"  => $this->filesize,
 				"converting_to" => $this->converting_to
 			]);
+
+			$this->convert_file($this->request_received[$i], $this->converting_to);
+	
 		}
 
 		return json_encode($this->filenames_array);
