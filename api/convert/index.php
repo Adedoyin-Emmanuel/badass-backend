@@ -16,7 +16,7 @@ if(!CONVERT_FILE_CONTROLLER->valid_key)
 
 if(isset($_REQUEST["convert_to"]) AND isset($_FILES["files"]))
 {
-	echo (CONVERT_FILE_CONTROLLER->check_file_request_sent("files", $_REQUEST["convert_to"]));
+	echo(CONVERT_FILE_CONTROLLER->check_file_request_sent("files", $_REQUEST["convert_to"]));
 }
 
 ?>
