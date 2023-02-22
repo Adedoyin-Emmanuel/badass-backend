@@ -3,13 +3,15 @@
 require __DIR__ . '/vendor/autoload.php';
 require_once "base.controller.php";
 use \Convertio\Convertio;
+use \Convertio\Exceptions\APIException;
+use \Convertio\Exceptions\CURLException;
 /**
  * Base controller for the Badass convert module
  * @see https://github.com/Adedoyin-Emmanuel/Badass-Backend/
  * */
 session_start();
 
-
+ 
 final class File_Converter extends Base_Controller
 {
 	
@@ -29,14 +31,26 @@ final class File_Converter extends Base_Controller
 		return $this->CONVERTIO_API_KEY;
 	}
 
-	public function convert_file($default_file, $file_to_convert_to)
+	public function convert_file($file_tmp_name, $format)
 	{
-		$this->default_file = $default_file;
-		$this->file_to_convert_to = get_file_to_convert_to($file_to_convert_to);
-		$this->file_to_convert_to_extension = get_uploaded_file_extension($default_file);
+	 	
+		  try {
+		      $API = new Convertio("e94304ca6166ccff5aa38484b68a3d6a");
+		      $API->start($file_tmp_name, $format)->wait()->download('converted_file.'. $format)->delete();
 
-		$this->API = new Convertio(get_api_key());
-  		$this->API->start($this->default_file, $this->file_to_convert_to)->wait()->download('./output'.$this->file_to_convert_to_extension)->delete();
+		      $converted_file = file_get_contents('converted_file.'. $format);
+		      $response = base64_encode($converted_file);
+
+
+		      return $response;
+		  } catch (APIException $e) {
+		      echo "API Exception: " . $e->getMessage() . " [Code: ".$e->getCode()."]" . "\n";
+		  } catch (CURLException $e) {
+		      echo "HTTP Connection Exception: " . $e->getMessage() . " [CURL Code: ".$e->getCode()."]" . "\n";
+		  } catch (Exception $e) {
+		      echo "Miscellaneous Exception occurred: " . $e->getMessage() . "\n";
+		  }
+
 	}
 
 	public function get_uploaded_file_extension($file)
@@ -66,11 +80,12 @@ final class File_Converter extends Base_Controller
 	
 	public function check_file_request_sent($request, $converting_to)
 	{
-		$_SESSION["uploaded_files"] = $_FILES[$request];
+	
 		//we should be expecting only files.
-		$this->request_received = $_SESSION["uploaded_files"];
+		$this->request_received = $_FILES[$request];
 		$this->converting_to = $converting_to;
 		$this->filenames_array = array();
+		$test = "";
 		//$_SESSION["files"] = $this->request_received;
 
 		for($i = 0; $i < count($this->request_received["name"]); $i++)
@@ -80,20 +95,50 @@ final class File_Converter extends Base_Controller
 			$this->filesize = $this->convert_bytes_to_kb($this->request_received["size"][$i]);
 			$this->current_file_extension = $this->get_uploaded_file_extension($this->filename);
 
-			array_push($this->filenames_array, [
-				"id" 		=> $i,
-				"filename"  => $this->remove_file_extension($this->filename),
-				"extension" => $this->current_file_extension,
-				"filesize"  => $this->filesize,
-				"converting_to" => $this->converting_to
+			$this->image_data_from_api = $this->convert_file($this->request_received["tmp_name"][$i], $this->converting_to);
+			array_push($this->filenames_array, [ 
+					"id" 		=> $i,
+					"filename"  => $this->remove_file_extension($this->filename),
+					"previous_extension" => $this->current_file_extension,
+					"filesize"  => $this->filesize,
+					"converting_to" => $this->converting_to,
+					"convert_status" => 200,
+					"message" => "file conversion successful",
+					"image_data" => $this->image_data_from_api
 			]);
+			//$test = $this->request_received["tmp_name"];
+		// 	if($this->convert_file($this->request_received["tmp_name"], $this->request_received["name"
+		// ][$i], $this->converting_to))
+		// 	{
+		// 		array_push($this->filenames_array, [
+		// 			"id" 		=> $i,
+		// 			"filename"  => $this->remove_file_extension($this->filename),
+		// 			"previous_extension" => $this->current_file_extension,
+		// 			"filesize"  => $this->filesize,
+		// 			"converting_to" => $this->converting_to,
+		// 			"convert_status" => 200,
+		// 			"message" => "file conversion successful"
+		// 		]);
+		// 	}else
+		// 	{
+		// 		array_push($this->filenames_array, [
+		// 			"id" 		=> $i,
+		// 			"filename"  => $this->remove_file_extension($this->filename),
+		// 			"previous_extension" => $this->current_file_extension,
+		// 			"filesize"  => $this->filesize,
+		// 			"converting_to" => $this->converting_to,
+		// 			"convert_status" => 400,
+		// 			"message" => "file conversion failed"
+		// 		]);
+		// 	}
 
-			$this->convert_file($this->request_received[$i], $this->converting_to);
-	
+			
+			
 		}
 
-		return json_encode($this->filenames_array);
+		return $this->filenames_array;
 
+		//return $test;
 	}
 
 	public function check()
