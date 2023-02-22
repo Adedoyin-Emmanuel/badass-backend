@@ -15,6 +15,11 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
     );
 
     public static $prefixLengthsPsr4 = array (
+        'U' => 
+        array (
+            'Unsplash\\OAuth2\\Client\\' => 23,
+            'Unsplash\\' => 9,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -23,6 +28,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         'M' => 
         array (
             'Mtownsend\\RemoveBg\\' => 19,
+        ),
+        'L' => 
+        array (
+            'League\\OAuth2\\Client\\' => 21,
         ),
         'G' => 
         array (
@@ -37,6 +46,14 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
     );
 
     public static $prefixDirsPsr4 = array (
+        'Unsplash\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hughbertd/oauth2-unsplash/src',
+        ),
+        'Unsplash\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unsplash/unsplash/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
@@ -49,6 +66,10 @@ class ComposerStaticInit7e7ee425e6c6fce6060e617e0b02b3e4
         'Mtownsend\\RemoveBg\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtownsend/remove-bg/src',
+        ),
+        'League\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-client/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
