@@ -21,7 +21,7 @@ final class File_Converter extends Base_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->CONVERTIO_API_KEY = "e94304ca6166ccff5aa38484b68a3d6a";
+		$this->CONVERTIO_API_KEY = "eb1fce7567aaebb7a71f191e04220227";
 		
 
 	}
@@ -35,7 +35,7 @@ final class File_Converter extends Base_Controller
 	{
 	 	
 		  try {
-		      $API = new Convertio("e94304ca6166ccff5aa38484b68a3d6a");
+		      $API = new Convertio("eb1fce7567aaebb7a71f191e04220227");
 		      $API->start($file_tmp_name, $format)->wait()->download('converted_file.'. $format)->delete();
 
 		      $converted_file = file_get_contents('converted_file.'. $format);
@@ -136,7 +136,7 @@ final class File_Converter extends Base_Controller
 			
 		}
 
-		return $this->filenames_array;
+		return json_encode($this->filenames_array);
 
 		//return $test;
 	}
