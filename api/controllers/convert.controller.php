@@ -106,34 +106,6 @@ final class File_Converter extends Base_Controller
 					"message" => "file conversion successful",
 					"image_data" => $this->image_data_from_api
 			]);
-			//$test = $this->request_received["tmp_name"];
-		// 	if($this->convert_file($this->request_received["tmp_name"], $this->request_received["name"
-		// ][$i], $this->converting_to))
-		// 	{
-		// 		array_push($this->filenames_array, [
-		// 			"id" 		=> $i,
-		// 			"filename"  => $this->remove_file_extension($this->filename),
-		// 			"previous_extension" => $this->current_file_extension,
-		// 			"filesize"  => $this->filesize,
-		// 			"converting_to" => $this->converting_to,
-		// 			"convert_status" => 200,
-		// 			"message" => "file conversion successful"
-		// 		]);
-		// 	}else
-		// 	{
-		// 		array_push($this->filenames_array, [
-		// 			"id" 		=> $i,
-		// 			"filename"  => $this->remove_file_extension($this->filename),
-		// 			"previous_extension" => $this->current_file_extension,
-		// 			"filesize"  => $this->filesize,
-		// 			"converting_to" => $this->converting_to,
-		// 			"convert_status" => 400,
-		// 			"message" => "file conversion failed"
-		// 		]);
-		// 	}
-
-			
-			
 		}
 
 		return json_encode($this->filenames_array);
