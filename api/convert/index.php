@@ -4,7 +4,10 @@ require_once "./../controllers/convert.controller.php";
 
 const CONVERT_FILE_CONTROLLER = new File_Converter();
 
-$USER_APP_ID  = @$_REQUEST["app_id"];
+if(isset($_REQUEST["app_id"]))
+{
+	$USER_APP_ID  = @$_REQUEST["app_id"];
+}
 
 $SERVER_RESPONSE = CONVERT_FILE_CONTROLLER->check_app_credentials($USER_APP_ID);
 
