@@ -9,7 +9,6 @@ use \Convertio\Exceptions\CURLException;
  * Base controller for the Badass convert module
  * @see https://github.com/Adedoyin-Emmanuel/Badass-Backend/
  * */
-session_start();
 
  
 final class File_Converter extends Base_Controller
@@ -85,8 +84,6 @@ final class File_Converter extends Base_Controller
 		$this->request_received = $_FILES[$request];
 		$this->converting_to = $converting_to;
 		$this->filenames_array = array();
-		$test = "";
-		//$_SESSION["files"] = $this->request_received;
 
 		for($i = 0; $i < count($this->request_received["name"]); $i++)
 		{
@@ -110,18 +107,6 @@ final class File_Converter extends Base_Controller
 
 		return json_encode($this->filenames_array);
 
-		//return $test;
-	}
-
-	public function check()
-	{
-		if(isset($_SESSION["uploaded_files"]))
-		{	
-			return "session is set";
-		}
-		else{
-			return "session is not set";
-		}
 	}
 
 }

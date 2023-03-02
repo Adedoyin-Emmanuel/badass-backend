@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once "./../controllers/convert.controller.php";
 
 const CONVERT_FILE_CONTROLLER = new File_Converter();
