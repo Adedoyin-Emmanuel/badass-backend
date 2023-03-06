@@ -2,21 +2,21 @@
 
 require_once "./../controllers/convert.controller.php";
 
-$CONVERT_FILE_CONTROLLER = new File_Converter();
+$convert_file_controller = new File_Converter();
 
-$USER_APP_ID  = @$_REQUEST["app_id"];
+$user_app_id  = $_REQUEST["app_id"];
 
-$SERVER_RESPONSE = @$CONVERT_FILE_CONTROLLER->check_app_credentials($USER_APP_ID);
+$server_response = $convert_file_controller->check_app_credentials($user_app_id);
 
 //check if the API key is legit
-if(!$CONVERT_FILE_CONTROLLER->valid_key)
+if(!$convert_file_controller->valid_key)
 {
-	echo $SERVER_RESPONSE;
+	echo $server_response;
 }
 
 if(isset($_REQUEST["convert_to"]) AND isset($_FILES["files"]))
 {
-	echo($CONVERT_FILE_CONTROLLER->check_file_request_sent("files", $_REQUEST["convert_to"]));
+	echo($convert_file_controller->check_file_request_sent("files", $_REQUEST["convert_to"]));
 }
 
 ?>
