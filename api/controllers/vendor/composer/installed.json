@@ -1,0 +1,61 @@
+{
+    "packages": [
+        {
+            "name": "convertio/convertio-php",
+            "version": "v0.4",
+            "version_normalized": "0.4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Convertio/convertio-php.git",
+                "reference": "aabb3538e4ceb7db746614f7cfb01c7a91ce755f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Convertio/convertio-php/zipball/aabb3538e4ceb7db746614f7cfb01c7a91ce755f",
+                "reference": "aabb3538e4ceb7db746614f7cfb01c7a91ce755f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "time": "2017-06-11T01:38:22+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Convertio\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Convertio Team",
+                    "email": "support@convertio.co",
+                    "homepage": "https://convertio.co/api/"
+                }
+            ],
+            "description": "Official PHP Wrapper for Convertio API",
+            "homepage": "https://github.com/convertio/convertio-php",
+            "keywords": [
+                "api",
+                "converter",
+                "convertio",
+                "file converter",
+                "rest",
+                "sdk"
+            ],
+            "support": {
+                "docs": "https://convertio.co/api/docs/",
+                "email": "support@convertio.co",
+                "issues": "https://github.com/Convertio/convertio-php/issues",
+                "name": "Convertio Team",
+                "source": "https://github.com/Convertio/convertio-php/tree/master"
+            },
+            "install-path": "../convertio/convertio-php"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
