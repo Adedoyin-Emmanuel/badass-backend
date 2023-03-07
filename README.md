@@ -1,17 +1,46 @@
 # Badass Backend API
+## A Tool For Image Manipulation :)
 
-### For Badass Frontend, see https://github.com/Adedoyin-Emmanuel/Badass/
+### Table Of Content
 
-#### Please note the only functional API endpoint is the convertAPI endpoint.
+- [Introduction](#Introduction)
+  - [Technologies](#Technologies)
+  - [Frontend Project](#Fronted-Project)
+  - [Live Site](#Live-Site)
+  - [Custom Backend API](#Backend-API)
+  - [Author](#author)
+
+#### Introduction
+
+Badass is an application built for image manipulation, with Badass, you can **Remove image background**, **Convert image files from one format to another**, **Download multiple images at once**. Now you might ask me, why did i build **Badass**? well I discovered when working on any project, I do 3 things almost everytime, 
+
+1. Downloading multiple image assets for my project.
+2. Twerking some images **eg** removing the background
+3. Converting image files from one form to another eg converting **.png** to **.ico** for **favicon** or converting **.png** to **.svg**  
+
+And usually I spend too much time on this surfing the web for good assets and all, so I built a tool to do it all for me!
+
+#### Technologies
+
+- **ReactJS**
+- **Typescript**
+- **PWA Technology**
+- **Bootstrap 5**
+- **Vanilla CSS**
+- **Jquery**
+- **PHP**
+- **Composer Tool**
+
+#### Frontend-Project
+**see https://github.com/Adedoyin-Emmanuel/badass**
 
 
-#### Using the simple yet powerful convertio's API, I built my own Convertion API too.
+#### Live-Site
+ **[Badass App](https://badass-app.vercel.app/)**
 
-You can also make request to my own API too, 
+#### Backend-API
 
-
-##### Practical Example On How To Use My API
-
+How to make request to my custom backend API
 ``` TypeScript
 
 import $ from "jquery";
@@ -24,7 +53,7 @@ const handleFileSubmit = (e:Event) =>{
 	const files = e.target.files;
 	const formData = new FormData(), fileArray = [...files];
 	$.ajax({
-		 url:`http://localhost/badass-backend/api/convert/?app_id=${Badass.API_KEY}&convert_to=${selectedFormat}`,
+		 url:`http://testbasedev.000.webhostapp.com/badass-backend/api/convert/?app_id=${Badass.API_KEY}&convert_to=${selectedFormat}`,
 		type: "POST",
 		data: formData,
 		processData: false,
@@ -64,4 +93,8 @@ const handleFileSubmit = (e:Event) =>{
 ```
 
 
-#### Please Note, I also included the RemoveBgAPI in the /apis folder, use at your own risk :) REMOVE.BG api wasn't working so I used another method, if you are interested,see  https://github.com/Adedoyin-Emmanuel/Badass/src/apis/
+#### Author
+
+Adedoyin Emmanuel Adeniyi
+
+*follow me* **[@Twitter](https://twitter.com/Emmysoft_Tm/)**
